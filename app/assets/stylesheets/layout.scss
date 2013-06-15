@@ -1,0 +1,5 @@
+div.container {
+  header {
+    img { float:right; @include clearfix; }
+  }
+}

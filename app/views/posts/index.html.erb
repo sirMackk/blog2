@@ -1,0 +1,8 @@
+<% @posts.each do |post| %>
+  <div>
+    <h3><%= link_to post.title, :controller => :posts, :action => :show, :slug => post.slug %></h3>
+    <small><%= post.created_at %> by <%= post.user.username %></small>
+    <p><%= post.description %></p>
+    <p><%= post.body %></p>
+  </div>
+<% end %> 
