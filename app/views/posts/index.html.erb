@@ -1,8 +1,9 @@
-<% @posts.each do |post| %>
-  <div>
-    <h3><%= link_to post.title, :controller => :posts, :action => :show, :slug => post.slug %></h3>
-    <small><%= post.created_at %> by <%= post.user.username %></small>
-    <p><%= post.description %></p>
-    <p><%= post.body %></p>
-  </div>
-<% end %> 
+<section class="posts">
+	<% @posts.each do |post| %>
+	  <div class="post">
+	    <h3><em><%= link_to post.title, show_post_path(post.slug) %><span> / <%= post.created_at.strftime('%B %d %Y') %></span></em></h3>
+	    <p><%= post.description %></p>
+	    <%= link_to 'read more', show_post_path(post.slug) %>
+	  </div>
+	<% end %> 
+</section>

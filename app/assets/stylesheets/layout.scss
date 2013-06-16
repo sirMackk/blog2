@@ -1,5 +1,38 @@
+$gun: #444;
+
 div.container {
+	width: 800px;
+	margin: 0 auto;
   header {
-    img { float:right; @include clearfix; }
+  	span {
+			font-size: 59px;
+			position: absolute;
+			left: 13px;
+			top: 128px;
+			font-family: arial, sans-serif;
+			letter-spacing: -3px;
+			text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
+			color: $gun
+  	}
+    img { float:right; }
+		& + section { clear: both; } 
   }
+  section.posts {
+  	padding-top: 40px;
+		.post {
+			h3 { 
+				text-align: center; 
+				a {
+					text-decoration: none;
+					color: $gun;
+					font-size: 22px;
+				}
+				span {
+					font-size: 11px;
+					color: $gun;
+				}
+			}
+		}
+  }
+
 }

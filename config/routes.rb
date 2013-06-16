@@ -7,8 +7,13 @@ Blog::Application.routes.draw do
   root 'posts#index'
 
   resources :posts, :except => :show
-  get     '/:slug' => 'posts#show', :as => :show_post
+    get     '/posts/:slug' => 'posts#show', :as => :show_post
   resources :users
+
+
+  controller :admins do
+    get '/admin' => 'admins#index'
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
