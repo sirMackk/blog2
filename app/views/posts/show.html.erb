@@ -1,5 +1,27 @@
 <section class="content">
-	<h3><%= @post.title %></h3>
-	<p><%= @post.created_at %></p>
-	<p><%= @post.body %></p>
-</div>
+	<div class="post-content">
+		<h3><%= @post.title %></h3>
+		<p><%= @post.created_at %></p>
+		<p><%= markdown @post.body  %></p>
+	</div>
+	<div class="comments">
+		<%= form_for [@post, @comment] do |f| %>
+			<%= f.label :email %>
+			<%= f.text_field :email %>
+			<%= f.label :nick %>
+			<%= f.text_field :nick %>
+			<%= f.label :body %>
+			<%= f.text_area :body %>
+			<%= f.submit %>
+		<% end %>
+		<% debugger %>
+		<% @post.comments.each do |comment| %>
+			<div class="comment">
+				<%= comment.nick %>
+				<%= comment.created_at.strftime('%B %d %Y, %H:%M') %>
+				<%= comment.body %>
+			</div>
+		<% end %>
+	</div>
+
+</section>

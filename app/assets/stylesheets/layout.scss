@@ -4,7 +4,7 @@ div.container {
 	width: 800px;
 	margin: 0 auto;
   header {
-  	span {
+  	span a {
 			font-size: 59px;
 			position: absolute;
 			left: 13px;
@@ -12,10 +12,31 @@ div.container {
 			font-family: arial, sans-serif;
 			letter-spacing: -3px;
 			text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
-			color: $gun
+			color: $gun;
+			text-decoration: none;
   	}
     img { float:right; }
 		& + section { clear: both; } 
+  }
+  section.content {
+  	padding-top: 40px;
+  	div.field {
+  		margin-top: 10px;
+  		input.title {
+  			width: 300px;
+  		}
+  		input.desc {
+  			width: 300px;
+  		}
+  		textarea.body {
+  			width: 500px;
+  			height: 300px;
+  		}
+  		label {
+  			display:block;
+  			margin-bottom: 5px;
+  		}
+  	}
   }
   section.posts {
   	padding-top: 40px;

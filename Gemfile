@@ -14,6 +14,7 @@ gem 'sqlite3'
 gem 'sass-rails', '~> 4.0.0.rc1'
 
 gem 'kaminari'
+gem 'redcarpet'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -24,7 +25,7 @@ gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
-# Use jquery as the JavaScript library
+# Use jquery as thgstreamer0.10-alsa gstreamer0.10-ffmpeg gstreamer0.10-fluendo-mp3 gstreamer0.10-gnomevfs gstreamer0.10-plugins-base gstreamer0.10-plugins-goode JavaScript library
 gem 'jquery-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks

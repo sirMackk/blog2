@@ -12,10 +12,10 @@ class PostsController < ApplicationController
 
   def create
     debugger
-    @post = current_user.post.new post_params
+    @post = current_user.posts.new post_params
     if @post.save
       flash[:success]  = 'Post saved'
-      redirect_to "/#{@post.slug}"
+      redirect_to show_post_path @post.slug
     else
       flash[:error] = 'Post not saved'
       render 'new'
@@ -24,6 +24,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find_by_slug params[:slug]
+    @comment = @post.comments.new
   end
 
   def edit
@@ -34,7 +35,7 @@ class PostsController < ApplicationController
     @post = Post.find params[:id]
     if @post.update_attributes post_params
       flash[:success] = 'Post updated'
-      redirect_to "/#{@post.slug}"
+      redirect_to show_post_path @post.slug
     else
       flash[:error] = 'Post not updated'
       render 'edit'
@@ -42,7 +43,12 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    Post.find(params[:id]).destroy
+    if Post.find(params[:id]).destroy
+      flash[:success] = "Post deleted!"
+    else 
+      flash[:error] = "Post could not be deleted"
+    end
+    redirect_to get_admin_path
   end
 
   private 

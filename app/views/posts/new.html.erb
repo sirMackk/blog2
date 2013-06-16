@@ -1,14 +1,18 @@
-<%= form_for @post do |f| %>
-
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-
-  <%= f.label :description %>
-  <%= f.text_field :description %>
-
-  <%= f.label :body %>
-  <%= f.text_area :body %>
-
-  <%= f.submit %>
-
-<% end %> 
+<section class="content">
+	<%= form_for @post do |f| %>
+		<div class="field">
+	  	<%= f.label :title %>
+	  	<%= f.text_field :title, :class => :title %>
+		</div>
+		<div class="field">
+	  	<%= f.label :description %>
+	  	<%= f.text_field :description, :class => :desc %>
+		</div>
+		<div class="field">
+	  	<%= f.label :body %>
+	  	<%= f.text_area :body, :class => :body %>
+		<div class="field">
+	  	<%= f.submit %>
+		</div>
+	<% end %> 
+</div>

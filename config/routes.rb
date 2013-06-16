@@ -6,13 +6,17 @@ Blog::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'posts#index'
 
-  resources :posts, :except => :show
-    get     '/posts/:slug' => 'posts#show', :as => :show_post
+  resources :posts, :except => :show do
+    resources :comments, :only => [:create, :destroy, :new]
+  end
+  get '/posts/:slug' => 'posts#show', :as => :show_post
+
+
   resources :users
 
 
   controller :admins do
-    get '/admin' => 'admins#index'
+    get '/admin' => 'admins#index', :as => :get_admin
   end
 
   # Example of regular route:
