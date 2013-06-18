@@ -6,4 +6,8 @@ class AdminsController < ApplicationController
 		@posts = Post.order('created_at DESC').page(params[:page]).per(2)
 	end
 
+	def show
+		@post = Post.find params[:id]
+	end
+
 end

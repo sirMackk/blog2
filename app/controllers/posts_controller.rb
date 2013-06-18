@@ -11,7 +11,6 @@ class PostsController < ApplicationController
   end
 
   def create
-    debugger
     @post = current_user.posts.new post_params
     if @post.save
       flash[:success]  = 'Post saved'
@@ -23,8 +22,10 @@ class PostsController < ApplicationController
   end
 
   def show
+    # params[:id].blank? ? @post = Post.find_by_slug(params[:slug]) : @post = Post.find(params[:id])
     @post = Post.find_by_slug params[:slug]
-    @comment = @post.comments.new
+    # @comment = @post.comments.new
+    @comment = Comment.new
   end
 
   def edit

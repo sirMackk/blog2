@@ -17,6 +17,7 @@ Blog::Application.routes.draw do
 
   controller :admins do
     get '/admin' => 'admins#index', :as => :get_admin
+    get '/admin/:id/show' => 'admins#show', :as => :admin_show
   end
 
   # Example of regular route:
