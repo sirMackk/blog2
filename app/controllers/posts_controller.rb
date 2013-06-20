@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 
-  before_filter :authenticate_user!, :except => [:index, :show]
+  before_filter :authenticate_user!, :except => [:index, :show, :feed]
 
   def index
     @posts = Post.all.order('created_at DESC')
@@ -21,10 +21,13 @@ class PostsController < ApplicationController
     end
   end
 
+  # def show
+  #   @post = Post.find params[:id]
+  #   @comment = Comment.new
+  # end
+
   def show
-    # params[:id].blank? ? @post = Post.find_by_slug(params[:slug]) : @post = Post.find(params[:id])
     @post = Post.find_by_slug params[:slug]
-    # @comment = @post.comments.new
     @comment = Comment.new
   end
 
@@ -50,6 +53,17 @@ class PostsController < ApplicationController
       flash[:error] = "Post could not be deleted"
     end
     redirect_to get_admin_path
+  end
+
+  def feed
+    @title = 'matts code cave'
+    @posts = Post.order('created_at DESC').limit(7)
+    @updated = @posts.first.updated_at unless @posts.empty?
+
+    respond_to do |format|
+      format.atom { render :layout => false }
+      format.rss { redirect_to feed_path(:format => :atom), :status => :moved_permanently }
+    end
   end
 
   private 

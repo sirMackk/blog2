@@ -1,14 +1,20 @@
 class CommentsController < ApplicationController
 
 	def create
-		@comment = Comment.new comment_params
-		@comment.post_id = params[:post_id]
-		if @comment.save
-			flash[:success] = 'Your comment has been saved'
-			redirect_to post_path params[:post_id]
+		if params[:comment][:name] == 'frodolives'
+			@comment = Comment.new comment_params
+			@comment.post_id = params[:post_id]
+			@post_slug = Post.find(params[:post_id]).slug
+			if @comment.save
+				flash[:success] = 'Your comment has been saved'
+				redirect_to show_post_path @post_slug
+			else
+				flash[:error] = 'Your comment could not be saved'
+				redirect_to show_post_path @post_slug
+			end
 		else
-			flash[:error] = 'Your comment could not be saved'
-			redirect_to post_path params[:post_id]
+			flash[:error] = 'Comment rejected as spam'
+			redirect_to show_post_path @post_slug
 		end
 	end
 

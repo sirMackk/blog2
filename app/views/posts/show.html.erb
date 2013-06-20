@@ -12,6 +12,7 @@
 			<%= f.text_field :nick %>
 			<%= f.label :body %>
 			<%= f.text_area :body %>
+			<%= f.hidden_field :name, :value => '' %>
 			<%= f.submit %>
 		<% end %>
 		<% @post.comments.each do |comment| %>
@@ -22,5 +23,11 @@
 			</div>
 		<% end %>
 	</div>
+
+	<script>
+	setTimeout(function() {
+		$('#comment_name').val('frodolives');
+	}, 5000);
+	</script>
 
 </section>

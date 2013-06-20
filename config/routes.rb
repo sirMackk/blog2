@@ -10,7 +10,7 @@ Blog::Application.routes.draw do
     resources :comments, :only => [:create, :destroy, :new]
   end
   get '/posts/:slug' => 'posts#show', :as => :show_post
-
+  get '/feed' => 'posts#feed', :as => :feed, :defaults => { :format => 'atom' }
 
   resources :users
 
