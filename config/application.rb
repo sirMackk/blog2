@@ -8,6 +8,10 @@ Bundler.require(:default, Rails.env)
 
 module Blog
   class Application < Rails::Application
+
+    config.assets.paths << "#{Rails.root}/app/assets/fonts"
+    config.assets.precompile += %w( .ttf ) 
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

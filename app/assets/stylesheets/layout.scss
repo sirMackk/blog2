@@ -1,21 +1,66 @@
 $gun: #444;
+$orange: #fa6900;
+$lightGrey: #EEE;
+$darkGrey: #CCC;
+
+@mixin round-border {
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+
+@font-face {
+  font-family: envy;
+  src: url('Envy Code R.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: ptc55f;
+  src: url('PTC55F.ttf') format('truetype');
+}
+
+p, div {
+  font-family: ptc55f;
+  color: $gun;
+}
+
+div.success, div.error {
+  @include round-border;
+  margin: -15px auto 10px auto;
+  padding: 10px 0 5px 10px;
+  width: 75%;
+}
+
+div.success {
+  background-color: #B1CF72;
+}
+
+div.error {
+  background-color: #F54828;
+  color: #fff;
+}
 
 div.container {
 	width: 800px;
-	margin: 0 auto;
+	margin: 0 auto 25px auto;
   header {
+    width: 100%;
   	span a {
 			font-size: 59px;
-			position: absolute;
-			left: 13px;
-			top: 128px;
-			font-family: arial, sans-serif;
+			font-family: envy, sans-serif;
 			letter-spacing: -3px;
 			text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
 			color: $gun;
 			text-decoration: none;
+      display: block;
+      float: left;
+      width: 100px;
+      margin-top: 120px;
+      &:hover {
+        color: $orange;
+      }
   	}
-    img { float:right; }
+    img { display: block; float: right; }
 		& + section { clear: both; } 
   }
   section.content {
@@ -37,22 +82,106 @@ div.container {
   			margin-bottom: 5px;
   		}
   	}
+    div.post-content {
+      p.date-header {
+        margin-top: -20px;
+        font-size: 14px;
+      }
+      div.post {
+        code {
+          font-family: ptc55f;
+          font-size: 14px;
+          background-color: $lightGrey;
+          padding: 1px 4px 1px;
+          border: 2px dashed $darkGrey;
+          @include round-border;
+        }
+        pre {
+          background-color: $lightGrey;
+          @include round-border;
+          border: 2px dashed $darkGrey;
+          padding: 5px 0 5px 10px; 
+          code {
+            padding: 0;
+            border: 0;
+            border-radius: 0;
+            -moz-border-radius: 0;
+            -webkit-border-radius: 0;
+          }
+        }
+        a { 
+          border-bottom: 1px dashed $orange;
+          display: inline-block;
+          color: $gun; 
+          height: 19px;
+          text-decoration: none;
+          &:hover {
+            color: $orange
+          }
+        }
+      }
+    }
+    div.comments {
+      margin-top: 46px;
+      border-top: 2px dashed $darkGrey;
+      padding-top: 11px;
+      div.comment-form {
+        margin-bottom: 15px;
+        padding-bottom: 20px;
+        border-bottom: 2px dashed $darkGrey;
+        label {
+          font-size: 14px;
+          margin-bottom: -3px;
+          span {
+            font-size: 12px;
+            color: #BABABA;
+            vertical-align: 2px;
+          }
+        }
+        textarea {
+          width: 400px;
+        }
+      }
+      div.comment {
+        margin-bottom: 30px;
+        div.comment-meta {
+          font-size: 13px;
+          span {
+            font-size: 14px;
+          }
+        }
+        div.comment-body {
+          font-size: 14px;
+          @include round-border;
+          background-color: $lightGrey;
+          padding: 7px 0 6px 15px;
+          width: 70%;
+        }
+      }
+    }
   }
   section.posts {
   	padding-top: 40px;
 		.post {
-			h3 { 
+			h1 { 
 				text-align: center; 
+        font-size: 22px;
 				a {
+          font-family: envy;
 					text-decoration: none;
 					color: $gun;
 					font-size: 22px;
-				}
-				span {
-					font-size: 11px;
-					color: $gun;
+          &:hover {
+            color: $orange;
+          }
 				}
 			}
+      h1 + div {
+        margin-top: -17px;
+        text-align: center;
+        font-size: 11px;
+        color: $gun;
+      }
 		}
   }
 

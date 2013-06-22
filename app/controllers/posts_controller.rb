@@ -14,17 +14,12 @@ class PostsController < ApplicationController
     @post = current_user.posts.new post_params
     if @post.save
       flash[:success]  = 'Post saved'
-      redirect_to show_post_path @post.slug
+      redirect_to show_post_path(@post.slug)
     else
       flash[:error] = 'Post not saved'
       render 'new'
     end
   end
-
-  # def show
-  #   @post = Post.find params[:id]
-  #   @comment = Comment.new
-  # end
 
   def show
     @post = Post.find_by_slug params[:slug]
@@ -39,7 +34,7 @@ class PostsController < ApplicationController
     @post = Post.find params[:id]
     if @post.update_attributes post_params
       flash[:success] = 'Post updated'
-      redirect_to show_post_path @post.slug
+      redirect_to show_post_path(@post.slug)
     else
       flash[:error] = 'Post not updated'
       render 'edit'

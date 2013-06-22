@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Blog</title>
+  <title>matts_code_cave</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
@@ -9,14 +9,15 @@
 <body>
   <% unless current_user.nil?  %>
     <% if current_user.role == 'admin' %>
-      <p>You're logged in as admin!</p>
-      <%= link_to 'Log out!', destroy_user_session_path, :method => :delete %>
-      <%= link_to 'Admin panel', get_admin_path %>
+      <div class='error'>You're logged in as admin!</p>
+        <%= link_to 'Log out!', destroy_user_session_path, :method => :delete %>
+        <%= link_to 'Admin panel', get_admin_path %>
+      </div>
     <% end %>
   <% end %>
   <% if flash[:success] %>
     <div class="success"><%= flash[:success]%></div>
-  <% else %>
+  <% elsif flash[:error] %>
     <div class="error"><%= flash[:error] %></div>
   <% end %>
   <div class="container">

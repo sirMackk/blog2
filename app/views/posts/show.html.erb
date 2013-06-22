@@ -1,33 +1,46 @@
 <section class="content">
 	<div class="post-content">
 		<h3><%= @post.title %></h3>
-		<p><%= @post.created_at %></p>
-		<p><%= markdown @post.body  %></p>
+		<p class="date-header"><%= @post.created_at.strftime('%B %d %Y') %></p>
+		<div class="post">
+			<%= markdown @post.body  %>
+		</div>
 	</div>
 	<div class="comments">
-		<%= form_for [@post, @comment] do |f| %>
-			<%= f.label :email %>
-			<%= f.text_field :email %>
-			<%= f.label :nick %>
-			<%= f.text_field :nick %>
-			<%= f.label :body %>
-			<%= f.text_area :body %>
-			<%= f.hidden_field :name, :value => '' %>
-			<%= f.submit %>
-		<% end %>
-		<% @post.comments.each do |comment| %>
+		<div class="comment-form">
+			<%= form_for [@post, @comment] do |f| %>
+				<div class="field">
+					<%= f.label :email, 'Email <span>(Invisible to others)</span>'.html_safe %>
+					<%= f.text_field :email %>
+				</div>
+				<div class="field">
+					<%= f.label :nick, 'Nickname' %>
+					<%= f.text_field :nick %>
+				</div>
+				<div class="field">
+					<%= f.label :body, 'Comment' %>
+					<%= f.text_area :body %>
+					<%= f.hidden_field :name, :value => '' %>
+				</div>
+				<div class="field">
+					<%= f.submit 'Submit' %>
+				</div>
+			<% end %>
+		</div>
+		<% @post.comments.reverse_each do |comment| %>
 			<div class="comment">
-				<%= comment.nick %>
-				<%= comment.created_at.strftime('%B %d %Y, %H:%M') %>
-				<%= comment.body %>
+				<div class='field comment-meta'>
+					Posted by <span><%= comment.nick %></span> on <%= comment.created_at.strftime('%B %d %Y, %H:%M') %>
+				</div>
+				<div class="field comment-body">
+					<%= comment.body %>
+				</div>
 			</div>
 		<% end %>
 	</div>
 
 	<script>
-	setTimeout(function() {
-		$('#comment_name').val('frodolives');
-	}, 5000);
+	var f=function(s){return s.split('').reverse().join('')};var s='sevilodorfeman_tnemmoc#';setTimeout(function(){$(f(s.slice(10, 23))).val(f(s.slice(0, 10)));},5000);
 	</script>
 
 </section>
