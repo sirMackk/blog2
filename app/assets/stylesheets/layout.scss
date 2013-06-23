@@ -11,12 +11,12 @@ $darkGrey: #CCC;
 
 @font-face {
   font-family: envy;
-  src: url('<%= asset_path "Envy Code R.ttf" %>') format('truetype');
+  src: font-url("envy_code_r.ttf") format('truetype');
 }
 
 @font-face {
   font-family: ptc55f;
-  src: url('<%= asset_path "PTC55F.ttf" %>') format('truetype');
+  src: font-url('ptc55f.ttf') format('truetype');
 }
 
 p, div {
