@@ -5,6 +5,9 @@
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
+  <link rel="alternate" type="application/atom+xml" 
+  title="matts_code_cave" 
+  href="/feed" />
 </head>
 <body>
   <% unless current_user.nil?  %>

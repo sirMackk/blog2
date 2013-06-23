@@ -1,14 +1,17 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0.rc1'
-gem "rspec-rails", "~> 2.13.2", group: [:development, :test]
+
+gem 'rails', '~> 4.0.0rc1'
+#gem "rspec-rails", "~> 2.13.2", group: [:development, :test]
 gem 'cancan', '~> 1.6.10'
 gem "devise", "~> 3.0.0.rc"
 gem 'factory_girl', '~> 4.2.0', group: [:development, :test]
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
+gem 'mysql2'
+gem 'passenger'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0.rc1'

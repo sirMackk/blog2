@@ -13,6 +13,9 @@ Blog::Application.routes.draw do
   get '/feed' => 'posts#feed', :as => :feed, :defaults => { :format => 'atom' }
 
   resources :users
+  # get '/admin/signin' => 'devise/sessions#new', :as => :new_user_session
+  # post '/admin/signin' => 'devise/sessions#create', :as => :user_session
+  # delete '/admin/signout' => 'devise/sessions#delete', :as => :destroy_user_session
 
 
   controller :admins do
