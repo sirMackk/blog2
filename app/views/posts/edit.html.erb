@@ -1,18 +1,54 @@
 <section class="content">
 	<%= form_for @post do |f| %>
 		<div class="field">
-	  	<%= f.label :title %>
-	  	<%= f.text_field :title, :class => :title %>
+	  		<%= f.label :title %>
+	  		<%= f.text_field :title, :class => :title %>
 		</div>
 		<div class="field">
-	  	<%= f.label :description %>
-	  	<%= f.text_field :description, :class => :desc %>
+	  		<%= f.label :description %>
+	  		<%= f.text_field :description, :class => :desc %>
 		</div>
 		<div class="field">
-	  	<%= f.label :body %>
-	  	<%= f.text_area :body, :class => :body %>
+	  		<%= f.label :body %>
+	  		<%= f.text_area :body, :class => :body %>
 		<div class="field">
-	  	<%= f.submit %>
+	  		<%= f.submit %>
 		</div>
 	<% end %> 
+		<div class="field">
+			<form id="file_upload" 
+			action="/posts/<%= @post.id %>/uploads" 
+			enctype="multipart/form-data"
+			method="POST">
+			<input name="authenticity_token"
+				   type="hidden"
+				   value="<%= form_authenticity_token %>">
+				<input 
+					type="file" 
+					multiple="multiple" 
+					name="upload[]">
+				<input type="submit" value="Upload">
+			</form>
+			<script>
+				$(document).ready(function() {
+					$("#file_upload").submit(function(event) {
+
+						var formData = new FormData($(this)[0]);
+						$.ajax({
+							url: $(this).attr("action"),
+							type: $(this).attr("method"),
+							enctype: "multipart/form-data",
+							data: formData,
+							processData: false,
+							contentType: false,
+							success: function(data) {
+								console.log(data);
+								console.log(data[0]);
+							}
+						});
+						return false;
+					});
+				});
+			</script>
+		</div>
 </div>

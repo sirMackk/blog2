@@ -8,6 +8,7 @@ Blog::Application.routes.draw do
 
   resources :posts, :except => :show do
     resources :comments, :only => [:create, :destroy, :new]
+    resources :uploads, :only => [:index, :create, :destroy]
   end
   get '/posts/:slug' => 'posts#show', :as => :show_post
   get '/feed' => 'posts#feed', :as => :feed, :defaults => { :format => 'atom' }
