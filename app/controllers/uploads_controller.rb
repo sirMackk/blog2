@@ -3,9 +3,11 @@ class UploadsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @files = Upload.where(:post_id == params[:post_id])
+    @urls = Upload.where(:post_id == params[:post_id]).collect do |i|
+      [i.asset.url, i.asset.url(:thumb)]
+    end
     respond_to do |f|
-      f.json { render json: @files }
+      f.json { render json: @urls }
     end
   end
 
@@ -13,6 +15,7 @@ class UploadsController < ApplicationController
     params[:upload].each do |file|
       tmp = {}
       tmp[:asset] = file
+      # move this to model
       upload = Upload.new tmp
       upload.post_id = params[:post_id]
       upload.title = file.original_filename

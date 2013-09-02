@@ -31,6 +31,24 @@
 			</form>
 			<script>
 				$(document).ready(function() {
+					//get image list of urls and ids
+					var getImages = function() {
+						$.ajax({
+						url: "/posts/<%= @post.id %>/uploads",
+						type: "get",
+						success: function(data) {
+							var html = "";
+							$.each(data, function(index, value) {
+								console.log(value);
+								html += "<tr><td><a href=\"" + value[0] + "\"><img src=\"" + value[1] + "\"></td><td><button>X</button></td></tr>"
+
+							});
+							$("#uploaded_images table tbody").append(html);
+						}
+						});
+					}
+					
+					//upload new images, call above to refresh list
 					$("#file_upload").submit(function(event) {
 
 						var formData = new FormData($(this)[0]);
@@ -48,7 +66,23 @@
 						});
 						return false;
 					});
+
+					//delete picture
+					//placeholder
+
+					getImages();
+
 				});
 			</script>
+		</div>
+		<div class="field" id="uploaded_images">
+			<table>
+				<thead>
+					<th>Image</th>
+					<th>Delete?</th>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
 		</div>
 </div>
