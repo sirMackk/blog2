@@ -30,6 +30,7 @@
 				<input type="submit" value="Upload">
 			</form>
 			<script>
+			var id = 0, url = 1, thumb = 2;
 				$(document).ready(function() {
 					//get image list of urls and ids
 					var getImages = function() {
@@ -39,14 +40,33 @@
 						success: function(data) {
 							var html = "";
 							$.each(data, function(index, value) {
-								console.log(value);
-								html += "<tr><td><a href=\"" + value[0] + "\"><img src=\"" + value[1] + "\"></td><td><button>X</button></td></tr>"
+								//clean up this string thing
+								html += "<tr><td><a href=\"" + value[url] + "\"><img src=\"" + value[thumb] + "\"></td><td><%= root_path %>" + value[url] + "</td><td><button class=\"deleteImg\" value=" + value[id] + ">X</button></td></tr>"
 
 							});
 							$("#uploaded_images table tbody").append(html);
 						}
 						});
-					}
+					};
+
+
+					//click the x button, send DELETE, fadeout and remove tr
+					$(document.body).on("click", "button.deleteImg", function(event) {
+						event.preventDefault();
+						var imgId = $(this).attr("value");
+						var row = $(this).parents()[1];
+						var self = this;
+
+						$.ajax({
+							url: "/posts/<%= @post.id %>/uploads/" + imgId,
+							type: "DELETE",
+							complete: function(data) {
+								$(row).fadeOut("fast", function() {
+									$(self).parents()[1].remove();
+								});
+							}
+						});
+					});
 					
 					//upload new images, call above to refresh list
 					$("#file_upload").submit(function(event) {
@@ -62,13 +82,12 @@
 							success: function(data) {
 								console.log(data);
 								console.log(data[0]);
+								$("#uploaded_images table tbody tr").remove();
+								getImages();
 							}
 						});
 						return false;
 					});
-
-					//delete picture
-					//placeholder
 
 					getImages();
 

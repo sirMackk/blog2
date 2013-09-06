@@ -4,7 +4,7 @@ class UploadsController < ApplicationController
 
   def index
     @urls = Upload.where(:post_id == params[:post_id]).collect do |i|
-      [i.asset.url, i.asset.url(:thumb)]
+      [i.id, i.asset.url, i.asset.url(:thumb),]
     end
     respond_to do |f|
       f.json { render json: @urls }
@@ -31,6 +31,12 @@ class UploadsController < ApplicationController
   end
 
   def destroy
+    @upload = Upload.find(params[:id])
+    if @upload.destroy
+      render json: "Success"
+    else
+      render json: { error: "Upload delete error" }
+    end
   end
 
 end
