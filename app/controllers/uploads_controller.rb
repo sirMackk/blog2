@@ -4,7 +4,12 @@ class UploadsController < ApplicationController
 
   def index
     @urls = Upload.where(:post_id == params[:post_id]).collect do |i|
-      [i.id, i.asset.url, i.asset.url(:thumb),]
+      if i.asset_content_type =~ /^image.*/
+        thumb = i.asset.url(:thumb)
+      else
+        thumb = "/assets/Box.png"
+      end
+      [i.id, i.asset.url, thumb]
     end
     respond_to do |f|
       f.json { render json: @urls }
