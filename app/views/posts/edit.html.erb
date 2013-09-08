@@ -41,7 +41,23 @@
 							var html = "";
 							$.each(data, function(index, value) {
 								//clean up this string thing
-								html += "<tr><td><a href=\"" + value[url] + "\"><img src=\"" + value[thumb] + "\"></td><td><%= root_path %>" + value[url] + "</td><td><button class=\"deleteImg\" value=" + value[id] + ">X</button></td></tr>"
+								// and add non markdown html input
+								// and turn into seperate js file
+								// and view helper
+								html += "<tr>\
+								<td>\
+									<a href=\"" + value[url] + "\">\
+									<img src=\"" + value[thumb] + "\">\
+								</td>\
+								<td>\
+								<span>[<%= root_path %>" + value[thumb] + 
+									"](<%= root_path %>" + value[url] + 
+									")</span>\
+								</td>\
+								<td>\
+								<button class=\"deleteImg\" value=" + value[id] + ">X</button>\
+								</td>\
+								</tr>"
 
 							});
 							$("#uploaded_images table tbody").append(html);
@@ -98,6 +114,7 @@
 			<table>
 				<thead>
 					<th>Image</th>
+					<th>Markdown code</th>
 					<th>Delete?</th>
 				</thead>
 				<tbody>

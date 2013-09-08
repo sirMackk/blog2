@@ -82,6 +82,19 @@ div.container {
   			margin-bottom: 5px;
   		}
   	}
+    div#uploaded_images {
+      tbody span {
+        background-color: #CCC;
+        font-face: courier-new;
+        font-size: 12px;
+        padding: 5px;
+      }
+      td {
+        padding: 5px;
+        border: solid 1px #000;
+      }
+      border: solid 1px #000;
+    }
     div.post-content {
       p.date-header {
         margin-top: -20px;
