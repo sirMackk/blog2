@@ -7,13 +7,14 @@ module ApplicationHelper
     markdown.render(text).html_safe
   end
 
-  def multi_file_upload(model)
+  def multi_file_upload(model, root_path)
   	#creates an upload form for uploading multiple files
   	# for use with file_uploads.js
   	upload_html = <<-END_OF_STRING
   	<div class="field">
 			<form id="file_upload"
 			action="/posts/#{model.id}/uploads" 
+			value="#{root_path}"
 			enctype="multipart/form-data"
 			method="POST">
 				<input name="authenticity_token"

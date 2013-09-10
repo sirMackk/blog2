@@ -4,28 +4,32 @@ var id = 0, url = 1, thumb = 2;
 $(document).ready(function() {
     //get image list of urls and ids
     var getImages = function() {
+        var rootPath = $("#file_upload").attr("value");
         $.ajax({
         url: $("#file_upload").attr("action"),
         type: "get",
         success: function(data) {
             var html = "";
             $.each(data, function(index, value) {
-                //clean up this string thing
-                // and add non markdown html input
-                // and turn into seperate js file
-                // and view helper
+                //TODO: clean up this string thing
                 html += "<tr>\
                 <td>\
                     <a href=\"" + value[url] + "\">\
                     <img src=\"" + value[thumb] + "\">\
                 </td>\
+                <td>Html:\
+                <div>&lt;a href=\"" + rootPath + value[url] +
+                "\"&gt;&lt;img src=\"" + rootPath + value[thumb] +
+                "\"&gt;</div>Markdown:\
+                <div>[" + rootPath + value[thumb] + 
+                    "](" + rootPath + value[url] + 
+                    ")</div>\
+                Absolute url:\
+                <div>" + rootPath + value[url] +
+                "</td>\
                 <td>\
-                <span>[<%= root_path %>" + value[thumb] + 
-                    "](<%= root_path %>" + value[url] + 
-                    ")</span>\
-                </td>\
-                <td>\
-                <button class=\"deleteImg\" value=" + value[id] + ">X</button>\
+                <button class=\"deleteImg\" value=" + value[id] + 
+                    ">X</button>\
                 </td>\
                 </tr>"
 
