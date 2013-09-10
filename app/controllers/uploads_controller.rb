@@ -11,9 +11,7 @@ class UploadsController < ApplicationController
       end
       [i.id, i.asset.url, thumb]
     end
-    respond_to do |f|
-      f.json { render json: @urls }
-    end
+    render json: @urls
   end
 
   def create
@@ -30,9 +28,7 @@ class UploadsController < ApplicationController
     Post.find(params[:post_id]).uploads.each do |upload|
       @uploads << upload.asset.url
     end
-    respond_to do |f|
-      f.json { render json:  @uploads }
-    end
+    render json: @uploads
   end
 
   def destroy
