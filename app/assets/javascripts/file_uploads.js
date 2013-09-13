@@ -1,5 +1,6 @@
 //remove this from application.js
-
+//it seems because of this location, this code doesnt
+//execute on page load, only on page refresh
 var id = 0, url = 1, thumb = 2;
 $(document).ready(function() {
     //get image list of urls and ids
@@ -9,18 +10,22 @@ $(document).ready(function() {
         url: $("#file_upload").attr("action"),
         type: "get",
         success: function(data) {
+            //yep, this function tries to load images on every page load
+            //should restrict it to only new & edit views
+            console.log("loaded images");
+            console.log(typeof(data));
             var html = "";
             $.each(data, function(index, value) {
                 //TODO: clean up this string thing
                 html += "<tr>\
                 <td>\
                     <a href=\"" + value[url] + "\">\
-                    <img src=\"" + value[thumb] + "\">\
+                    <img src=\"" + value[thumb] + "\"></a>\
                 </td>\
                 <td>Html:\
                 <div>&lt;a href=\"" + rootPath + value[url] +
                 "\"&gt;&lt;img src=\"" + rootPath + value[thumb] +
-                "\"&gt;</div>Markdown:\
+                "\"&gt;&lt;/a&gt</div>Markdown:\
                 <div>[" + rootPath + value[thumb] + 
                     "](" + rootPath + value[url] + 
                     ")</div>\

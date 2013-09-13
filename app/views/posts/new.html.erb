@@ -1,18 +1,19 @@
 <section class="content">
 	<%= form_for @post do |f| %>
 		<div class="field">
-	  	<%= f.label :title %>
-	  	<%= f.text_field :title, :class => :title %>
+	  		<%= f.label :title %>
+	  		<%= f.text_field :title, :class => :title %>
 		</div>
 		<div class="field">
-	  	<%= f.label :description %>
-	  	<%= f.text_field :description, :class => :desc %>
+	  		<%= f.label :description %>
+	  		<%= f.text_field :description, :class => :desc %>
 		</div>
 		<div class="field">
-	  	<%= f.label :body %>
-	  	<%= f.text_area :body, :class => :body %>
+	  		<%= f.label :body %>
+	  		<%= f.text_area :body, :class => :body %>
 		<div class="field">
-	  	<%= f.submit %>
+	  		<%= f.submit %>
 		</div>
 	<% end %> 
-</div>
+	<%= multi_file_upload(@post, root_path) %>
+</section>

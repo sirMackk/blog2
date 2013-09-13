@@ -3,11 +3,11 @@ class PostsController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show, :feed]
 
   def index
-    @posts = Post.all.order('created_at DESC')
+    @posts = Post.all.order('created_at DESC').page(params[:page]).per(8)
   end
 
   def new
-    @post = Post.new
+    @post = current_user.posts.new id: Post.last.id + 1
   end
 
   def create
@@ -59,6 +59,9 @@ class PostsController < ApplicationController
       format.atom { render :layout => false }
       format.rss { redirect_to feed_path(:format => :atom), :status => :moved_permanently }
     end
+  end
+
+  def about
   end
 
   private 
