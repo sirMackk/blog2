@@ -20,7 +20,7 @@ class CommentsController < ApplicationController
 
 	def destroy
 		@comment = Comment.find params[:id]
-		@post_id = @comment.post_id
+		@post_id = @comment.post_id #what is this for?
 		if @comment.destroy
 			flash[:success] = 'Comment deleted'
 			redirect_to :back
