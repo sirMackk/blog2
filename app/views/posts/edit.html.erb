@@ -15,5 +15,5 @@
 	  		<%= f.submit %>
 		</div>
 	<% end %> 
-	<%= multi_file_upload(@post, root_path) %>
+	<%= multi_file_upload(@post, root_path, form_authenticity_token) %>
 </section>

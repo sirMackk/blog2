@@ -7,7 +7,7 @@ module ApplicationHelper
     markdown.render(text).html_safe
   end
 
-  def multi_file_upload(model, root_path)
+  def multi_file_upload(model, root_path, csrf_token)
   	#creates an upload form for uploading multiple files
   	# for use with file_uploads.js
   	upload_html = <<-END_OF_STRING
@@ -19,7 +19,7 @@ module ApplicationHelper
 			method="POST">
 				<input name="authenticity_token"
 				   type="hidden"
-				   value="<%= form_authenticity_token %>">
+				   value="#{csrf_token}">
 				<input
 					type="file"
 					multiple="multiple"
