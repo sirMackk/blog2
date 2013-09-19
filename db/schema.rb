@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20130919071837) do
     t.datetime "asset_updated_at"
   end
 
-  add_index "uploads", ["post_id"], name: "index_files_on_post_id", using: :btree
+  add_index "uploads", ["post_id"], name: "index_uploads_on_post_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
