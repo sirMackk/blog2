@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130831191502) do
+ActiveRecord::Schema.define(version: 20130919071837) do
 
   create_table "comments", force: true do |t|
     t.integer  "post_id"
@@ -24,7 +24,21 @@ ActiveRecord::Schema.define(version: 20130831191502) do
 
   add_index "comments", ["post_id"], name: "index_comments_on_post_id", using: :btree
 
-  create_table "files", force: true do |t|
+  create_table "posts", force: true do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.string   "description"
+    t.string   "slug"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "spam_count",  default: 0, null: false
+  end
+
+  add_index "posts", ["slug"], name: "index_posts_on_slug", using: :btree
+  add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
+
+  create_table "uploads", force: true do |t|
     t.string   "title"
     t.integer  "post_id"
     t.datetime "created_at"
@@ -35,20 +49,7 @@ ActiveRecord::Schema.define(version: 20130831191502) do
     t.datetime "asset_updated_at"
   end
 
-  add_index "files", ["post_id"], name: "index_files_on_post_id", using: :btree
-
-  create_table "posts", force: true do |t|
-    t.integer  "user_id"
-    t.string   "title"
-    t.string   "description"
-    t.string   "slug"
-    t.text     "body"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "posts", ["slug"], name: "index_posts_on_slug", using: :btree
-  add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
+  add_index "uploads", ["post_id"], name: "index_files_on_post_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

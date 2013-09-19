@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 
-  before_filter :authenticate_user!, :except => [:index, :show, :feed]
+  before_filter :authenticate_user!, :except => [:index, :show, :feed, :about]
 
   def index
     @posts = Post.all.order('created_at DESC').page(params[:page]).per(8)
