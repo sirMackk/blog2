@@ -1,28 +1,19 @@
-== README
+### My Blog app
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Features
 
-Things you may want to cover:
+1. auth/auth
+2. markdown
+fizz. image uploads
+4. awesome
+buzz. incredibly sophisticated js anti spam system
 
-* Ruby version
+## Licence
 
-* System dependencies
+Copyright (C) 2013 sirMackk
 
-* Configuration
+This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
 
-* Database creation
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
