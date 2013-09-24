@@ -1,5 +1,7 @@
 module ApplicationHelper
 
+  @@main_url = "http://mattscodecave.com"
+
   def markdown(text)
     markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, :autolink => true,
       :spacer_after_headers => true, :no_intra_emphasis => true)
@@ -7,14 +9,14 @@ module ApplicationHelper
     markdown.render(text).html_safe
   end
 
-  def multi_file_upload(model, root_path, csrf_token)
+  def multi_file_upload(model, csrf_token)
   	#creates an upload form for uploading multiple files
   	# for use with file_uploads.js
   	upload_html = <<-END_OF_STRING
   	<div class="field">
 			<form id="file_upload"
 			action="/posts/#{model.id}/uploads" 
-			value="#{root_path}"
+			value="#{@@main_url}"
 			enctype="multipart/form-data"
 			method="POST">
 				<input name="authenticity_token"

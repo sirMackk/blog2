@@ -15,5 +15,6 @@
 	  		<%= f.submit %>
 		</div>
 	<% end %> 
-	<%= multi_file_upload(@post, root_path, form_authenticity_token) %>
+	<%= multi_file_upload(@post, form_authenticity_token) %>
+	<%= javascript_include_tag "moar/file_uploads.js" %>
 </section>
