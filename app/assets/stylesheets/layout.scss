@@ -44,6 +44,8 @@ div.container {
 	width: 800px;
 	margin: 0 auto 25px auto;
   header {
+    background:url(image_path('gears.svg')) no-repeat top right;
+    display: inline-block;
     width: 100%;
   	span a {
 			font-size: 59px;
@@ -60,11 +62,15 @@ div.container {
         color: $orange;
       }
   	}
-    img { display: block; float: right; }
 		& + section { clear: both; } 
   }
   section.content {
   	padding-top: 40px;
+    div.twitter-btn {
+      position: fixed;
+      bottom: 7px;
+      right: 12px;
+    }
   	div.field {
   		margin-top: 10px;
   		input.title {
