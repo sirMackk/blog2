@@ -54,7 +54,7 @@ class PostsController < ApplicationController
     @title = 'matts code cave'
     @posts = Post.order('created_at DESC').limit(7)
     @updated = @posts.first.updated_at unless @posts.empty?
-
+    
     respond_to do |format|
       format.atom { render :layout => false }
       format.rss { redirect_to feed_path(:format => :atom), :status => :moved_permanently }
