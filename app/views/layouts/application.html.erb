@@ -24,9 +24,11 @@
     <div class="error"><%= flash[:error] %></div>
   <% end %>
   <div class="container">
-    <header>
-      <span><%= link_to "matts@codecave:~$", root_path %></span>
-    </header>
+    <% cache "header1" do %>
+      <header>
+        <span><%= link_to "matts@codecave:~$", root_path %></span>
+      </header>
+    <% end %>
     <%= yield %>
     <div class="footer">
     <%= link_to "About", about_path %>

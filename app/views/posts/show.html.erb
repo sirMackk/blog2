@@ -3,48 +3,50 @@
 		<a href="https://twitter.com/share" class="twitter-share-button" data-via="matt_voidptr" data-count="none">Tweet</a>
 		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 	</div>
-	<div class="post-content">
-		<h2><%= @post.title %></h2>
-		<p class="date-header"><%= @post.created_at.strftime('%B %d %Y') %></p>
-		<div class="post">
-			<%= markdown @post.body  %>
-		</div>
-	</div>
-	<div class="comments">
-		<div class="comment-form">
-			<%= form_for [@post, @comment] do |f| %>
-				<div class="field">
-					<%= f.label :email, 'Email <span>(Invisible to others)</span>'.html_safe %>
-					<%= f.text_field :email %>
-				</div>
-				<div class="field">
-					<%= f.label :nick, 'Nickname' %>
-					<%= f.text_field :nick %>
-				</div>
-				<div class="field">
-					<%= f.label :body, 'Comment' %>
-					<%= f.text_area :body %>
-					<%= f.hidden_field :name, :value => '' %>
-				</div>
-				<div class="field">
-					<%= f.submit 'Submit' %>
-				</div>
-			<% end %>
-		</div>
-		<% @post.comments.reverse_each do |comment| %>
-			<div class="comment">
-				<div class='field comment-meta'>
-					Posted by <span><%= comment.nick %></span> on <%= comment.created_at.strftime('%B %d %Y, %H:%M') %>
-				</div>
-				<div class="field comment-body">
-					<%= comment.body %>
-				</div>
-			</div>
-		<% end %>
-	</div>
+  <% cache @post do %>
+    <div class="post-content">
+      <h2><%= @post.title %></h2>
+      <p class="date-header"><%= @post.created_at.strftime('%B %d %Y') %></p>
+      <div class="post">
+        <%= markdown @post.body  %>
+      </div>
+    </div>
+    <div class="comments">
+      <div class="comment-form">
+        <%= form_for [@post, @comment] do |f| %>
+          <div class="field">
+            <%= f.label :email, 'Email <span>(Invisible to others)</span>'.html_safe %>
+            <%= f.text_field :email %>
+          </div>
+          <div class="field">
+            <%= f.label :nick, 'Nickname' %>
+            <%= f.text_field :nick %>
+          </div>
+          <div class="field">
+            <%= f.label :body, 'Comment' %>
+            <%= f.text_area :body %>
+            <%= f.hidden_field :name, :value => '' %>
+          </div>
+          <div class="field">
+            <%= f.submit 'Submit' %>
+          </div>
+        <% end %>
+      </div>
+      <% @post.comments.reverse_each do |comment| %>
+        <div class="comment">
+          <div class='field comment-meta'>
+            Posted by <span><%= comment.nick %></span> on <%= comment.created_at.strftime('%B %d %Y, %H:%M') %>
+          </div>
+          <div class="field comment-body">
+            <%= comment.body %>
+          </div>
+        </div>
+      <% end %>
+    </div>
 
-	<script>
-	var f=function(s){return s.split('').reverse().join('')};var s='sevilodorfeman_tnemmoc#';setTimeout(function(){$(f(s.slice(10, 23))).val(f(s.slice(0, 10)));},5000);
-	</script>
+    <script>
+    var f=function(s){return s.split('').reverse().join('')};var s='sevilodorfeman_tnemmoc#';setTimeout(function(){$(f(s.slice(10, 23))).val(f(s.slice(0, 10)));},5000);
+    </script>
+  <% end %>
 
 </section>

@@ -22,7 +22,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find_by_slug params[:slug]
+    @post = Post.includes(:comments).find_by_slug params[:slug]
     @comment = Comment.new
   end
 

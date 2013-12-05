@@ -13,6 +13,9 @@ gem 'sqlite3'
 gem 'mysql2'
 gem 'passenger'
 
+gem 'dalli'
+gem 'rack-mini-profiler'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0.rc1'
 
