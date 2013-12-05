@@ -15,6 +15,7 @@ gem 'passenger'
 
 gem 'dalli'
 gem 'rack-mini-profiler'
+gem 'actionpack-action_caching'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0.rc1'
