@@ -13,7 +13,7 @@ class Post < ActiveRecord::Base
   end
 
   def last
-    Post.where("created_at < ?", created_at).first
+    Post.where("created_at < ?", created_at).last
   end
 
   private
