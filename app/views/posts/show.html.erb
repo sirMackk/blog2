@@ -1,3 +1,4 @@
+<% @title = @post.title %>
 <section class="content">
 	<div class="twitter-btn">
 		<a href="https://twitter.com/share" class="twitter-share-button" data-via="matt_voidptr" data-count="none">Tweet</a>
@@ -11,6 +12,23 @@
         <%= markdown @post.body  %>
       </div>
     </div>
+    <div class="post-nav">
+      <% if last_post = @post.last %>
+        <div class="last-post">
+          <em>
+            <%= link_to "Previous post: #{last_post.title}", show_post_path(last_post.slug) %>
+          </em>
+        </div>
+      <% end %>
+      <% if next_post = @post.next %>
+        <div class="next-post">
+          <em>
+            <%= link_to "Next post: #{next_post.title}", show_post_path(next_post.slug) %>
+          </em>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
     <div class="comments">
       <div class="comment-form">
         <%= form_for [@post, @comment] do |f| %>
@@ -47,6 +65,5 @@
     <script>
     var f=function(s){return s.split('').reverse().join('')};var s='sevilodorfeman_tnemmoc#';setTimeout(function(){$(f(s.slice(10, 23))).val(f(s.slice(0, 10)));},5000);
     </script>
-  <% end %>
 
 </section>

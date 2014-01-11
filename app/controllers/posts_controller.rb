@@ -1,15 +1,15 @@
 class PostsController < ApplicationController
 
   before_filter :authenticate_user!, :except => [:index, :show, :feed, :about]
-  caches_action :show, expires_in: 1.hour
-  caches_action :index, expires_in: 1.hour
+  #caches_action :show, expires_in: 1.hour
+  #caches_action :index, expires_in: 1.hour
 
   def index
     @posts = Post.all.order('created_at DESC').page(params[:page]).per(8)
   end
 
   def new
-    @post = current_user.posts.new id: Post.last.id + 1
+    @post = current_user.posts.new id: Post.last.nil? ? 0 : Post.last.id + 1
   end
 
   def create
@@ -24,7 +24,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.includes(:comments).find_by_slug params[:slug]
+    @post = Post.includes(:comments).find_by_slug(params[:slug]) || not_found
     @comment = Comment.new
   end
 
@@ -34,7 +34,7 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find params[:id]
-    if @post.update_attributes post_params
+    if @post.update_attributes(post_params)
       flash[:success] = 'Post updated'
       redirect_to show_post_path(@post.slug)
     else

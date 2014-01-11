@@ -134,21 +134,33 @@ div.container {
             -webkit-border-radius: 0;
           }
         }
-        a { 
-          border-bottom: 1px dashed $orange;
-          display: inline-block;
-          color: $gun; 
-          height: 24px;
-          text-decoration: none;
-          &:hover {
-            color: $orange
-          }
-        }
 
         a.image {
           display: inline;
           border: 0;
         }
+      }
+    }
+    a { 
+      border-bottom: 1px dashed $orange;
+      display: inline-block;
+      color: $gun; 
+      height: 24px;
+      text-decoration: none;
+      &:hover {
+        color: $orange
+      }
+    }
+    div.post-nav {
+      border-top: 2px dashed $darkGrey;
+      padding-top: 22px;
+      padding-bottom: 0px;
+      font-size: 20px;
+      div.last-post {
+        float: left;
+      }
+      div.next-post {
+        float: right;
       }
     }
     div.comments {

@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
 	def create
 		post = Post.find(params[:post_id])
 		if params[:comment][:name] == 'frodolives'
-			@comment = Comment.new comment_params
+			@comment = Comment.new(comment_params)
 			@comment.post_id = params[:post_id]
 			if @comment.save
 				flash[:success] = 'Your comment has been saved'
@@ -21,15 +21,14 @@ class CommentsController < ApplicationController
 	end
 
 	def destroy
-		@comment = Comment.find params[:id]
+		@comment = Comment.find(params[:id])
 		@post_id = @comment.post_id #what is this for?
 		if @comment.destroy
 			flash[:success] = 'Comment deleted'
-			redirect_to :back
 		else
 			flash[:error] = 'Comment could not be deleted'
-			redirect_to :back
 		end
+		redirect_to admin_show_path(@post_id)
 	end
 
 	private

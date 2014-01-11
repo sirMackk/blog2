@@ -8,6 +8,14 @@ class Post < ActiveRecord::Base
 
   validates_presence_of :title
 
+  def next
+    Post.where("created_at > ?", created_at).first
+  end
+
+  def last
+    Post.where("created_at < ?", created_at).first
+  end
+
   private
 
   def slugidize

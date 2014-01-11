@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>matts_code_cave</title>
+  <title>matts code cave <%= ": #{@title}" if @title %></title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
   <%= auto_discovery_link_tag :atom, feed_url %>
   <%= auto_discovery_link_tag :rss, feed_url %>
@@ -34,5 +33,6 @@
     <%= link_to "About", about_path %>
   </div>
   </div>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 </body>
 </html>
