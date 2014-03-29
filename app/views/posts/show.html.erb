@@ -16,14 +16,14 @@
       <% if last_post = @post.last %>
         <div class="last-post">
           <em>
-            <%= link_to "Previous post: #{last_post.title}", show_post_path(last_post.slug) %>
+            <%= link_to "&larr; Previous post: #{last_post.title}".html_safe, show_post_path(last_post.slug) %>
           </em>
         </div>
       <% end %>
       <% if next_post = @post.next %>
         <div class="next-post">
           <em>
-            <%= link_to "Next post: #{next_post.title}", show_post_path(next_post.slug) %>
+            <%= link_to "Next post: #{next_post.title} &rarr;".html_safe, show_post_path(next_post.slug) %>
           </em>
         </div>
       <% end %>

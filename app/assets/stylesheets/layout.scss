@@ -153,9 +153,10 @@ div.container {
     }
     div.post-nav {
       border-top: 2px dashed $darkGrey;
-      padding-top: 22px;
-      padding-bottom: 0px;
+      display: inline-block;
+      width: 100%;
       font-size: 20px;
+      div { padding: 10px 0; }
       div.last-post {
         float: left;
       }
@@ -164,7 +165,6 @@ div.container {
       }
     }
     div.comments {
-      margin-top: 46px;
       border-top: 2px dashed $darkGrey;
       padding-top: 11px;
       div.comment-form {
