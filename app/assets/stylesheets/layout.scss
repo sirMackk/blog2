@@ -1,7 +1,8 @@
 $gun: #444;
+$gunDark: #333;
 $orange: #fa6900;
 $lightGrey: #EEE;
-$darkGrey: #CCC;
+$darkGrey: #BBB;
 
 @mixin round-border {
   border-radius: 5px;
@@ -21,7 +22,7 @@ $darkGrey: #CCC;
 
 p, div {
   font-family: ptc55f;
-  color: $gun;
+  color: $gunDark;
 }
 
 div.success, div.error {
@@ -114,7 +115,7 @@ div.container {
           line-height: 32px;
         }
         code {
-          font-family: ptc55f;
+          /*font-family: ptc55f;*/
           font-size: 14px;
           background-color: $lightGrey;
           padding: 1px 4px 1px;
@@ -122,6 +123,7 @@ div.container {
           @include round-border;
         }
         pre {
+          font-family: Consolas, monospace;
           background-color: $lightGrey;
           @include round-border;
           border: 2px dashed $darkGrey;
