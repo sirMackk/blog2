@@ -1,4 +1,5 @@
 class Post < ActiveRecord::Base
+  as_enum :post_type, blog_post: 0, blog_page: 1, blog_widget: 2
 
   belongs_to :user
   before_save :slugidize
@@ -16,10 +17,18 @@ class Post < ActiveRecord::Base
     Post.where("created_at < ?", created_at).last
   end
 
+  class << self
+    def by_title(title)
+      Post.where(title: title).first
+    end
+  end
+
   private
 
   def slugidize
-    self.slug = title.downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, '')
+    unless self.blog_widget?
+      self.slug = title.downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, '')
+    end
   end
 
 end

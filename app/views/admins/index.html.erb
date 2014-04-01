@@ -5,6 +5,7 @@
 		<thead>
 			<th>ID</th>
 			<th>Title</th>
+      <th>Type</th>
 			<th>Comments</th>
 			<th>Spam</th>
 			<th>Created at</th>
@@ -16,6 +17,7 @@
 				<tr>
 					<td><%= post.id %></td>
 					<td><%= link_to post.title, admin_show_path(post.id) %></td>
+          <td><%= post.post_type %></td>
 					<td><%= post.comments.count %></td>
 					<td><%= post.spam_count %></td>
 					<td><%= post.created_at.strftime('%B %d %Y') %></td>

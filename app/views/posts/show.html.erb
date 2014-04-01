@@ -12,23 +12,26 @@
         <%= markdown @post.body  %>
       </div>
     </div>
-    <div class="post-nav">
-      <% if last_post = @post.last %>
-        <div class="last-post">
-          <em>
-            <%= link_to "&larr; Previous post: #{last_post.title}".html_safe, show_post_path(last_post.slug) %>
-          </em>
-        </div>
-      <% end %>
-      <% if next_post = @post.next %>
-        <div class="next-post">
-          <em>
-            <%= link_to "Next post: #{next_post.title} &rarr;".html_safe, show_post_path(next_post.slug) %>
-          </em>
-        </div>
-      <% end %>
-    </div>
+    <% if @post.blog_post? %>
+      <div class="post-nav">
+        <% if last_post = @post.last %>
+          <div class="last-post">
+            <em>
+              <%= link_to "&larr; Previous post: #{last_post.title}".html_safe, show_post_path(last_post.slug) %>
+            </em>
+          </div>
+        <% end %>
+        <% if next_post = @post.next %>
+          <div class="next-post">
+            <em>
+              <%= link_to "Next post: #{next_post.title} &rarr;".html_safe, show_post_path(next_post.slug) %>
+            </em>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
   <% end %>
+  <% if @post.blog_post? %>
     <div class="comments">
       <div class="comment-form">
         <%= form_for [@post, @comment] do |f| %>
@@ -61,6 +64,7 @@
         </div>
       <% end %>
     </div>
+  <% end %>
 
     <script>
     var f=function(s){return s.split('').reverse().join('')};var s='sevilodorfeman_tnemmoc#';setTimeout(function(){$(f(s.slice(10, 23))).val(f(s.slice(0, 10)));},5000);

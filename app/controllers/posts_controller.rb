@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   #caches_action :index, expires_in: 1.hour
 
   def index
-    @posts = Post.all.order('created_at DESC').page(params[:page]).per(8)
+    @posts = Post.where(post_type_cd: 0).order('created_at DESC').page(params[:page]).per(8)
   end
 
   def new
@@ -69,7 +69,7 @@ class PostsController < ApplicationController
   private 
 
   def post_params
-    params.require(:post).permit(:title, :description, :body)
+    params.require(:post).permit(:title, :description, :body, :post_type)
   end
 
 end
