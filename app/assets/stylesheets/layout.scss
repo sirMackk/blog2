@@ -249,6 +249,13 @@ div.container {
   div.footer {
     text-align: center;
     margin-top: 60px;
+    ul {
+      padding: 0;
+      li { 
+        padding-right: 8px;
+        display: inline; 
+      }
+    }
     a {
       color: $darkGrey;
       text-decoration: none;
