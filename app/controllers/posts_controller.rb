@@ -54,7 +54,7 @@ class PostsController < ApplicationController
 
   def feed
     @title = 'matts code cave'
-    @posts = Post.order('created_at DESC').limit(7)
+    @posts = Post.where(post_type_cd: 0).order('created_at DESC').limit(7)
     @updated = @posts.first.updated_at unless @posts.empty?
     
     respond_to do |format|

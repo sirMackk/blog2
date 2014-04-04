@@ -1,6 +1,6 @@
 module ApplicationHelper
 
-  @@main_url = "http://mattscodecave.com"
+  @@main_url = "https://mattscodecave.com"
 
   def markdown(text)
     markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, :autolink => true,

@@ -1,5 +1,6 @@
 var id = 0, url = 1, thumb = 2;
-$(document).ready(function() {
+//$(document).ready(function() {
+setTimeout(function() {
     //get image list of urls and ids
     var getImages = function() {
         var rootPath = $("#file_upload").attr("value");
@@ -78,4 +79,4 @@ $(document).ready(function() {
 
     getImages();
 
-});
+}, 1500);
