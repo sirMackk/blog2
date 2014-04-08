@@ -1,5 +1,9 @@
 class Post < ActiveRecord::Base
-  as_enum :post_type, blog_post: 0, blog_page: 1, blog_widget: 2
+  #TODO: Upgrade to rails4.1 enums to decouple views (new/edit) and controllers
+  as_enum :post_type, blog_post: 0, blog_page: 1, blog_widget: 2, blog_post_draft: 3
+
+  scope :published, ->{ where(post_type_cd: 0) }
+  scope :draft, ->{ where(post_type_cd: 3) }
 
   belongs_to :user
   before_save :slugidize
@@ -10,11 +14,11 @@ class Post < ActiveRecord::Base
   validates_presence_of :title
 
   def next
-    Post.where(post_type_cd: 0).where("created_at > ?", created_at).first
+    Post.published.where("created_at > ?", created_at).first
   end
 
   def last
-    Post.where(post_type_cd: 0).where("created_at < ?", created_at).last
+    Post.published.where("created_at < ?", created_at).last
   end
 
   class << self

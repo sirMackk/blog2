@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   #caches_action :index, expires_in: 1.hour
 
   def index
-    @posts = Post.where(post_type_cd: 0).order('created_at DESC').page(params[:page]).per(8)
+    @posts = Post.published.order('created_at DESC').page(params[:page]).per(8)
   end
 
   def new
@@ -54,7 +54,7 @@ class PostsController < ApplicationController
 
   def feed
     @title = 'matts code cave'
-    @posts = Post.where(post_type_cd: 0).order('created_at DESC').limit(7)
+    @posts = Post.published.order('created_at DESC').limit(7)
     @updated = @posts.first.updated_at unless @posts.empty?
     
     respond_to do |format|

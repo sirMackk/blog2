@@ -56,8 +56,9 @@ describe PostsController do
     end
 
     it "should give a 404 if no post is found" do
-      get :show, slug: 'nope'
-      response.status.should eq(404)
+      expect do
+        get :show, slug: 'nope'
+      end.to raise_error(ActionController::RoutingError)
     end
 
   end

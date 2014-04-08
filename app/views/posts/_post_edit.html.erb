@@ -1,0 +1,30 @@
+<section class="content">
+	<%= form_for @post do |f| %>
+		<div class="field">
+	  		<%= f.label :title %>
+	  		<%= f.text_field :title, :class => :title %>
+		</div>
+		<div class="field">
+	  		<%= f.label :description %>
+	  		<%= f.text_field :description, :class => :desc %>
+		</div>
+    <div>
+        <%= f.radio_button :post_type_cd, '0' %>
+        <%= f.label :post_type_cd, 'Post', value: 'post' %>
+        <%= f.radio_button :post_type_cd, '3' %>
+        <%= f.label :post_type_cd, 'Draft', value: 'draft' %>
+        <%= f.radio_button :post_type_cd, '1' %>
+        <%= f.label :post_type, 'Page', value: 'page' %>
+        <%= f.radio_button :post_type_cd, '2' %>
+        <%= f.label :post_type_cd, 'Widget', value: 'widget' %>
+    </div>
+		<div class="field">
+	  		<%= f.label :body %>
+	  		<%= f.text_area :body, :class => :body %>
+		<div class="field">
+	  		<%= f.submit %>
+		</div>
+	<% end %> 
+	<%= multi_file_upload(@post, form_authenticity_token) %>
+	<%= javascript_include_tag "moar/file_uploads" %>
+</section>
