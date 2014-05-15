@@ -104,8 +104,22 @@ div.container {
     }
     div.post-content {
       p.date-header {
-        margin-top: -20px;
+        margin: -20px 0 0 0;
         font-size: 14px;
+      }
+      div.tags-header {
+        p, ul { 
+          display: inline;
+          font-size: 14px;
+        }
+        ul {
+          padding: 0;
+          li {
+            display: inline;
+            list-style-type: none;
+            a { display: inline; }
+          }
+        }
       }
       & > h2 {
         font-size: 36px;

@@ -1,6 +1,7 @@
 class Post < ActiveRecord::Base
   #TODO: Upgrade to rails4.1 enums to decouple views (new/edit) and controllers
   as_enum :post_type, blog_post: 0, blog_page: 1, blog_widget: 2, blog_post_draft: 3
+  acts_as_taggable
 
   scope :published, ->{ where(post_type_cd: 0) }
   scope :draft, ->{ where(post_type_cd: 3) }

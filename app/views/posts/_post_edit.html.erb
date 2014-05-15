@@ -1,3 +1,8 @@
+<% content_for :footer_assets do %>
+	<%= javascript_include_tag "moar/file_uploads" %>
+	<%= javascript_include_tag "moar/select2" %>
+  <%= stylesheet_link_tag    "select2" %>
+<% end %>
 <section class="content">
 	<%= form_for @post do |f| %>
 		<div class="field">
@@ -21,10 +26,18 @@
 		<div class="field">
 	  		<%= f.label :body %>
 	  		<%= f.text_area :body, :class => :body %>
+    </div>
+    <div class="field">
+      <%= f.select :tag_list, options_for_select(ActsAsTaggableOn::Tag.all, @post.tag_list), {}, { multiple: true } %>
+    </div>
 		<div class="field">
 	  		<%= f.submit %>
 		</div>
 	<% end %> 
 	<%= multi_file_upload(@post, form_authenticity_token) %>
-	<%= javascript_include_tag "moar/file_uploads" %>
+  <script>
+    setTimeout(function() {
+      $('#post_tag_list').select2();
+    }, 1000);
+  </script>
 </section>

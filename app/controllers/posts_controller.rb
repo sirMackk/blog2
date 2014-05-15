@@ -8,6 +8,12 @@ class PostsController < ApplicationController
     @posts = Post.published.order('created_at DESC').page(params[:page]).per(8)
   end
 
+
+  def tagged
+    @posts = Post.published.tagged_with(params[:tag]).order('created_at DESC').page(params[:page]).per(8)
+    render 'index'
+  end
+
   def new
     @post = current_user.posts.new id: Post.last.nil? ? 0 : Post.last.id + 1
   end
@@ -24,7 +30,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.includes(:comments).find_by_slug(params[:slug]) || not_found
+    @post = Post.includes(:comments, :tags).find_by_slug(params[:slug]) || not_found
     @comment = Comment.new
   end
 
@@ -66,7 +72,7 @@ class PostsController < ApplicationController
   private 
 
   def post_params
-    params.require(:post).permit(:title, :description, :body, :post_type_cd)
+    params.require(:post).permit(:title, :description, :body, :post_type_cd, tag_list: [])
   end
 
 end

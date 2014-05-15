@@ -13,6 +13,7 @@ Blog::Application.routes.draw do
   get '/posts/:slug' => 'posts#show', :as => :show_post
   get '/pages/:slug' => 'posts#show', as: :show_page
   get '/feed' => 'posts#feed', :as => :feed, :defaults => { :format => 'atom' }
+  get '/tagged/:tag' => 'posts#tagged', as: :tagged
 
   resources :users
   # get '/admin/signin' => 'devise/sessions#new', :as => :new_user_session
