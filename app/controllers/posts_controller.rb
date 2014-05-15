@@ -17,7 +17,7 @@ class PostsController < ApplicationController
   def new
     @post = current_user.posts.new id: Post.last.nil? ? 0 : Post.last.id + 1
   end
-
+p
   def create
     @post = current_user.posts.new post_params
     if @post.save

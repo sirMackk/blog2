@@ -28,7 +28,7 @@
 	  		<%= f.text_area :body, :class => :body %>
     </div>
     <div class="field">
-      <%= f.select :tag_list, options_for_select(ActsAsTaggableOn::Tag.all, @post.tag_list), {}, { multiple: true } %>
+      <input type="hidden" name="post[tag_list][]" id="post_tag_list" value="<%= @post.tag_list.join(", ") %>">
     </div>
 		<div class="field">
 	  		<%= f.submit %>
@@ -37,7 +37,7 @@
 	<%= multi_file_upload(@post, form_authenticity_token) %>
   <script>
     setTimeout(function() {
-      $('#post_tag_list').select2();
+        $('#post_tag_list').select2({tags: [<%= ActsAsTaggableOn::Tag.all.map{ |t| "\"#{t}\""}.join(",").html_safe %>]});
     }, 1000);
   </script>
 </section>
