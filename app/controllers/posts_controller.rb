@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 
-  before_filter :authenticate_user!, :except => [:index, :show, :feed, :about]
+  before_filter :authenticate_user!, :except => [:index, :show, :feed, :about, :tagged]
   #caches_action :show, expires_in: 1.hour
   #caches_action :index, expires_in: 1.hour
 
