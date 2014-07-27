@@ -30,7 +30,7 @@ p
   end
 
   def show
-    @post = Post.includes(:comments, :tags).find_by_slug(params[:slug]) || not_found
+    @post = Post.published.includes(:comments, :tags).find_by_slug(params[:slug]) || not_found
     @comment = Comment.new
   end
 
