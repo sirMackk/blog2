@@ -3,7 +3,7 @@ class Post < ActiveRecord::Base
   as_enum :post_type, blog_post: 0, blog_page: 1, blog_widget: 2, blog_post_draft: 3
   acts_as_taggable
 
-  scope :published, ->{ where(post_type_cd: 0) }
+  scope :published, ->{ where.not(post_type_cd: 3) }
   scope :draft, ->{ where(post_type_cd: 3) }
 
   belongs_to :user
