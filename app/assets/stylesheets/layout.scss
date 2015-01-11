@@ -15,13 +15,8 @@ $darkGrey: #BBB;
   src: font-url("envy_code_r.ttf") format('truetype');
 }
 
-@font-face {
-  font-family: ptc55f;
-  src: font-url('ptc55f.ttf') format('truetype');
-}
-
 p, div {
-  font-family: ptc55f;
+  font-family: Merriweather, serif;
   color: $gunDark;
 }
 
